@@ -118,6 +118,10 @@ command /delhomev2 [<text>]:
 		if arg-1 is not set:
 			send "&c使用方法: /delhomev2 [ホーム名]"
 			send "&c例: /delhomev2 ringohouse"
+			set {_h} to "&a%{homev2name1.%player's uuid%}% %{homev2name2.%player's uuid%}% %{homev2name3.%player's uuid%}%"
+			replace all "<none>" in {_h} with ""
+			replace all "  " in {_h} with " "
+			send "&d登録済みのhome: %{_h}%"
 			stop
 		
 		if arg-1 is set:
@@ -143,6 +147,10 @@ command /delhomev2 [<text>]:
 				stop
 			else:
 				send "&cその名前のhomeは登録されていません！"
+				set {_h} to "&a%{homev2name1.%player's uuid%}% %{homev2name2.%player's uuid%}% %{homev2name3.%player's uuid%}%"
+				replace all "<none>" in {_h} with ""
+				replace all "  " in {_h} with " "
+				send "&d登録済みのhome: %{_h}%"
 				stop
 
 
