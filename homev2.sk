@@ -1,0 +1,187 @@
+#Home v2.0.0
+#home.skを改良したskript
+
+command /sethomev2 [<text>]:
+	trigger:
+		if {homev2.amount.%player's uuid%} is not set:
+			set {homev2.amount.%player's uuid%} to 0
+			send "[log] amount is not set"
+			send "[log] set homev2 amount to 0"
+		if arg-1 is not set:
+			send "&c使用方法: /sethomev2 [ホーム名]"
+			send "&e例: /sethomev2 ringohouse"
+			stop
+			
+		if arg-1 is set:
+			if arg-1 is not {homev2name1.%player's uuid%}:
+				if arg-1 is not {homev2name2.%player's uuid%}:
+					if arg-1 is not {homev2name3.%player's uuid%}:
+						send "ok"
+						if {homev2.amount.%player's uuid%} is 0:
+							send "[log] homev2.amount is 0"
+							if {homev2name1.%player's uuid%} is not set:
+								send "[log] home1 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name1.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name2.%player's uuid%} is not set:
+								send "[log] home2 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name2.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name3.%player's uuid%} is not set:
+								send "[log] home3 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name3.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+						if {homev2.amount.%player's uuid%} is 1:
+							send "[log] homev2.amount is 1"
+							if {homev2name1.%player's uuid%} is not set:
+								send "[log] home1 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name1.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name2.%player's uuid%} is not set:
+								send "[log] home2 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name2.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name3.%player's uuid%} is not set:
+								send "[log] home3 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name3.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+						if {homev2.amount.%player's uuid%} is 2:
+							send "[log] homev2.amount is 2"
+							if {homev2name1.%player's uuid%} is not set:
+								send "[log] home1 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name1.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name2.%player's uuid%} is not set:
+								send "[log] home2 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name2.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name3.%player's uuid%} is not set:
+								send "[log] home3 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name3.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+						if {homev2.amount.%player's uuid%} is 3:
+							send "[log] homev2.amount is 3"
+							send "&cこれ以上多くのhomeを設定できません!"
+							stop
+					else:
+						send "&cその名前のhomeはすでに存在しています！"
+						stop
+				else:
+					send "&cその名前のhomeはすでに存在しています！"
+					stop
+			else:
+				send "&cその名前のhomeはすでに存在しています！"
+				stop
+
+
+
+
+
+command /delhomev2 [<text>]:
+	trigger:
+		if arg-1 is not set:
+			send "&c使用方法: /delhomev2 [ホーム名]"
+			send "&c例: /delhomev2 ringohouse"
+			stop
+		
+		if arg-1 is set:
+			if arg-1 is {homev2name1.%player's uuid%}:
+				delete {homev2name1.%player's uuid%}
+				remove arg-1 from {homev2.%player's uuid%::*}
+				remove 1 from {homev2.amount.%player's uuid%}
+				send "&ahome「%arg-1%」を削除しました！"
+				stop
+			
+			if arg-1 is {homev2name2.%player's uuid%}:
+				delete {homev2name2.%player's uuid%}
+				remove arg-1 from {homev2.%player's uuid%::*}
+				remove 1 from {homev2.amount.%player's uuid%}
+				send "&ahome「%arg-1%」を削除しました！"
+				stop
+			
+			if arg-1 is {homev2name3.%player's uuid%}:
+				delete {homev2name3.%player's uuid%}
+				remove arg-1 from {homev2.%player's uuid%::*}
+				remove 1 from {homev2.amount.%player's uuid%}
+				send "&ahome「%arg-1%」を削除しました！"
+				stop
+			else:
+				send "&cその名前のhomeは登録されていません！"
+				stop
+
+
+
+
+
+
+command /homev2 [<text>]:
+	trigger:
+		if arg-1 is not set:
+			set {_h} to "&a%{homev2name1.%player's uuid%}% %{homev2name2.%player's uuid%}% %{homev2name3.%player's uuid%}%"
+			replace all "<none>" in {_h} with ""
+			replace all "  " in {_h} with " "
+			send "&d登録済みのhome: %{_h}%"
+			send "&e/homev2 [ホーム名] で登録したホームへテレポートできます!"
+			send "&e例: /homev2 ringohouse"
+			stop
+		
+		if arg-1 is set:
+			if arg-1 is {homev2name1.%player's uuid%}:
+				teleport player to {homev2.%arg-1%.%player's uuid%}
+				send "&a「%arg-1%」にテレポートしました！"
+				stop
+			if arg-1 is {homev2name2.%player's uuid%}:
+				teleport player to {homev2.%arg-1%.%player's uuid%}
+				send "&a「%arg-1%」にテレポートしました！"
+				stop
+			if arg-1 is {homev2name3.%player's uuid%}:
+				teleport player to {homev2.%arg-1%.%player's uuid%}
+				send "&a「%arg-1%」にテレポートしました！"
+				stop
+			else:
+				send "&cその名前のhomeは存在しません！"
+				stop
+
+command /homev2reset:
+	trigger:
+		set {homev2.amount.%uuid of player%} to 0
+		delete {homev2name1.%player's uuid%}
+		delete {homev2name2.%player's uuid%}
+		delete {homev2name3.%player's uuid%}
+		send "[log] reset your homev2 data."
