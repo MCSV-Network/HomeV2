@@ -186,9 +186,47 @@ command /delhomev2 [<text>]:
 #==========[RESET_COMMAND]==========
 command /homev2reset:
 	trigger:
-		if {homev2reset.%
-		set {homev2.amount.%uuid of player%} to 0
-		delete {homev2name1.%player's uuid%}
-		delete {homev2name2.%player's uuid%}
-		delete {homev2name3.%player's uuid%}
-		send "[log] reset your homev2 data."
+		if {homev2reset.%player's uuid%} is not set:
+			set {homev2reset.%player's uuid%} to 0
+		if {homev2reset.%player's uuid%} is 0:
+			set {homev2reset.%player's uuid%} to 1
+			send "&e&m===&r[&4&l警告! - Warning!&r&e]==="
+			send "&eこのコマンドは特別な理由がない限り"
+			send "&e使用しないでください。"
+			send "&eこれを使用すると、Homeの全データが消去されます!(この操作は取り消せません!!)"
+			send "&4本当に行う場合は、もう一度&e/homev2reset&4を入力してください。"
+			stop
+		if {homev2reset.%player's uuid%} is 1:
+			set {homev2.amount.%uuid of player%} to 0
+			delete {homev2name1.%player's uuid%}
+			delete {homev2name2.%player's uuid%}
+			delete {homev2name3.%player's uuid%}
+			send "[log] reset your homev2 data."
+			send "&e&m===&r[&4&lHomeV2&r&e]&m==="
+			send "&cHomeのリセットが完了しました。"
+			set {homev2reset.%player's uuid%} to 0
+			stop
+
+#==========[TAB_COMPLETE]==========
+
+#home tab
+on tab complete of "/homev2":
+	set tab completions for position 1 to ""
+	if {homev2name1.%player's uuid%} is set:
+		add "%{homev2name1.%player's uuid%}%" to tab completions for position 1
+	if {homev2name2.%player's uuid%} is set:
+		add "%{homev2name2.%player's uuid%}%" to tab completions for position 1
+	if {homev2name3.%player's uuid%} is set:
+		add "%{homev2name3.%player's uuid%}%" to tab completions for position 1
+	else:
+		add "/sethomev2 ホーム名 でHomeを追加できます!" to tab completions for position 2
+
+#delhome tab
+on tab complete of "/delhomev2":
+	set tab completions for position 1 to ""
+	if {homev2name1.%player's uuid%} is set:
+		add "%{homev2name1.%player's uuid%}%" to tab completions for position 1
+	if {homev2name2.%player's uuid%} is set:
+		add "%{homev2name2.%player's uuid%}%" to tab completions for position 1
+	if {homev2name3.%player's uuid%} is set:
+		add "%{homev2name3.%player's uuid%}%" to tab completions for position 1
