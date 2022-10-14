@@ -194,8 +194,14 @@ command /homev2reset:
 			send "&eこのコマンドは特別な理由がない限り"
 			send "&e使用しないでください。"
 			send "&eこれを使用すると、Homeの全データが消去されます!(この操作は取り消せません!!)"
-			send "&4本当に行う場合は、もう一度&e/homev2reset&4を入力してください。"
-			stop
+			send "&4本当に行う場合は、&n30秒以内に&r&4もう一度&e/homev2reset&4を入力してください。"
+			wait 30 seconds
+			if {homev2reset.%player's uuid%} is 1:
+				send "&e[&4HomeV2&e] 30秒以内にコマンドが入力されなかったため、Homeのリセットはキャンセルされました。"
+				set {homev2reset.%player's uuid%} to 0
+				stop
+			else:
+				stop
 		if {homev2reset.%player's uuid%} is 1:
 			set {homev2.amount.%uuid of player%} to 0
 			delete {homev2name1.%player's uuid%}
