@@ -54,7 +54,7 @@ command /sethomev2 [<text>]:
 						send "[log] Is that arg-1 not in the list? - &aYes"
 						
 						#home数によって処理の方法を変更
-						if {homev2.amount.%player's uuid%} is 0:
+						if {homev2.amount.%player's uuid%} is less than 3:
 							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
 							if {homev2name1.%player's uuid%} is not set:
 								send "[log] home1 is not set"
@@ -80,59 +80,8 @@ command /sethomev2 [<text>]:
 								set {homev2.%arg-1%.%player's uuid%} to location of player
 								send "&a現在地を 「%arg-1%」 として設定しました！"
 								stop
-						if {homev2.amount.%player's uuid%} is 1:
-							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
-							if {homev2name1.%player's uuid%} is not set:
-								send "[log] home1 is not set"
-								add 1 to {homev2.amount.%player's uuid%}
-								add arg-1 to {homev2.%player's uuid%::*}
-								set {homev2name1.%player's uuid%} to arg-1
-								set {homev2.%arg-1%.%player's uuid%} to location of player
-								send "&a現在地を 「%arg-1%」 として設定しました！"
-								stop
-							if {homev2name2.%player's uuid%} is not set:
-								send "[log] home2 is not set"
-								add 1 to {homev2.amount.%player's uuid%}
-								add arg-1 to {homev2.%player's uuid%::*}
-								set {homev2name2.%player's uuid%} to arg-1
-								set {homev2.%arg-1%.%player's uuid%} to location of player
-								send "&a現在地を 「%arg-1%」 として設定しました！"
-								stop
-							if {homev2name3.%player's uuid%} is not set:
-								send "[log] home3 is not set"
-								add 1 to {homev2.amount.%player's uuid%}
-								add arg-1 to {homev2.%player's uuid%::*}
-								set {homev2name3.%player's uuid%} to arg-1
-								set {homev2.%arg-1%.%player's uuid%} to location of player
-								send "&a現在地を 「%arg-1%」 として設定しました！"
-								stop
-						if {homev2.amount.%player's uuid%} is 2:
-							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
-							if {homev2name1.%player's uuid%} is not set:
-								send "[log] home1 is not set"
-								add 1 to {homev2.amount.%player's uuid%}
-								add arg-1 to {homev2.%player's uuid%::*}
-								set {homev2name1.%player's uuid%} to arg-1
-								set {homev2.%arg-1%.%player's uuid%} to location of player
-								send "&a現在地を 「%arg-1%」 として設定しました！"
-								stop
-							if {homev2name2.%player's uuid%} is not set:
-								send "[log] home2 is not set"
-								add 1 to {homev2.amount.%player's uuid%}
-								add arg-1 to {homev2.%player's uuid%::*}
-								set {homev2name2.%player's uuid%} to arg-1
-								set {homev2.%arg-1%.%player's uuid%} to location of player
-								send "&a現在地を 「%arg-1%」 として設定しました！"
-								stop
-							if {homev2name3.%player's uuid%} is not set:
-								send "[log] home3 is not set"
-								add 1 to {homev2.amount.%player's uuid%}
-								add arg-1 to {homev2.%player's uuid%::*}
-								set {homev2name3.%player's uuid%} to arg-1
-								set {homev2.%arg-1%.%player's uuid%} to location of player
-								send "&a現在地を 「%arg-1%」 として設定しました！"
-								stop
-						if {homev2.amount.%player's uuid%} is 3:
+						else:
+							send "[log] homev2.amount is 3? - &aYes"
 							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
 							send "&cこれ以上多くのhomeを設定できません!"
 							stop
