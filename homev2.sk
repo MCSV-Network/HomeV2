@@ -54,7 +54,7 @@ command /sethomev2 [<text>]:
 						send "[log] Is that arg-1 not in the list? - &aYes"
 						
 						#home数によって処理の方法を変更
-						if {homev2.amount.%player's uuid%} is less than 3:
+						if {homev2.amount.%player's uuid%} is 0:
 							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
 							if {homev2name1.%player's uuid%} is not set:
 								send "[log] home1 is not set"
@@ -80,8 +80,59 @@ command /sethomev2 [<text>]:
 								set {homev2.%arg-1%.%player's uuid%} to location of player
 								send "&a現在地を 「%arg-1%」 として設定しました！"
 								stop
-						else:
-							send "[log] homev2.amount is 3? - &aYes"
+						if {homev2.amount.%player's uuid%} is 1:
+							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
+							if {homev2name1.%player's uuid%} is not set:
+								send "[log] home1 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name1.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name2.%player's uuid%} is not set:
+								send "[log] home2 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name2.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name3.%player's uuid%} is not set:
+								send "[log] home3 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name3.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+						if {homev2.amount.%player's uuid%} is 2:
+							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
+							if {homev2name1.%player's uuid%} is not set:
+								send "[log] home1 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name1.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name2.%player's uuid%} is not set:
+								send "[log] home2 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name2.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+							if {homev2name3.%player's uuid%} is not set:
+								send "[log] home3 is not set"
+								add 1 to {homev2.amount.%player's uuid%}
+								add arg-1 to {homev2.%player's uuid%::*}
+								set {homev2name3.%player's uuid%} to arg-1
+								set {homev2.%arg-1%.%player's uuid%} to location of player
+								send "&a現在地を 「%arg-1%」 として設定しました！"
+								stop
+						if {homev2.amount.%player's uuid%} is 3:
 							send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
 							send "&cこれ以上多くのhomeを設定できません!"
 							stop
@@ -157,7 +208,7 @@ command /homev2reset:
 			delete {homev2name2.%player's uuid%}
 			delete {homev2name3.%player's uuid%}
 			send "[log] reset your homev2 data."
-			send "&e&m===&r[&4&lHomeV2&r&e]&m==="
+			send "&e&m===&r&e[&4&lHomeV2&r&e]&m==="
 			send "&cHomeのリセットが完了しました。"
 			set {homev2reset.%player's uuid%} to 0
 			stop
@@ -185,3 +236,82 @@ on tab complete of "/delhomev2":
 		add "%{homev2name2.%player's uuid%}%" to tab completions for position 1
 	if {homev2name3.%player's uuid%} is set:
 		add "%{homev2name3.%player's uuid%}%" to tab completions for position 1
+
+
+#==========[REPLACE_OLDHOME]==========
+
+command /hometransfer:
+	trigger:
+		if {homev2transfer.%player's uuid%} is not set:
+			set {homev2transfer.%player's uuid%} to 0
+		if {homev2transfer.%player's uuid%} is 0:
+			set {homev2transfer.%player's uuid%} to 1
+			send "&e&m===&r[&4&l警告! - Warning!&r&e]==="
+			send "&e旧HomeからHomeV2への移行を行います。"
+			send "&e・HomeV2にあるデータは&c旧Homeによって置き換えられます!"
+			send "&e・移行が完了した後、旧Homeにあったデータは&c削除&eされます!"
+			send "&e・移行が完了するまでは退出/離席しないでください!正常に移行出来なくなる可能性があります!"
+			send "&4この操作は取り消す事ができません!"
+			send "&4本当に行う場合は、&n30秒以内に&r&4もう一度&e/hometransfer&4を入力してください。"
+			wait 30 seconds
+			if {homev2transfer.%player's uuid%} is 1:
+				send "&e[&4HomeV2&e] 30秒以内にコマンドが入力されなかったため、Homeのリセットはキャンセルされました。"
+				set {homev2transfer.%player's uuid%} to 0
+				stop
+		if {homev2transfer.%player's uuid%} is 1:
+			send "[log] &a旧HomeのデータをHomeV2に移動します。" to player
+			set {homev2.amount.%uuid of player%} to {home.amount.%player's uuid%}
+			send "[log]Homeの個数を置き換え中..." to player
+			send "[log]&a完了" to player
+			send "旧Home: &a%{home.amount.%player's uuid%}%" to player
+			send "HomeV2: &a%{homev2.amount.%uuid of player%}%" to player
+
+			set {_h1} to "&a%{home1name.%player's uuid%}%"
+			replace all "<none>" in {_h1} with ""
+			replace all "  " in {_h1} with " "
+			set {_h2} to "&a%{home2name.%player's uuid%}%"
+			replace all "<none>" in {_h2} with ""
+			replace all "  " in {_h2} with " "
+			set {_h3} to "&a%{home3name.%player's uuid%}%"
+			replace all "<none>" in {_h3} with ""
+			replace all "  " in {_h3} with " "
+
+			set {homev2name1.%player's uuid%} to {home1name.%player's uuid%}
+			send "[log]home1を置き換え..." to player
+			send "[!]&aチャット欄に%{_h1}%と入力してください。"
+			set {homechat.%player%} to 1
+			while {homechat.%player%} is 1:
+				wait a seconds
+			set {homev2name2.%player's uuid%} to {home2name.%player's uuid%}
+			send "[log]home2を置き換え..." to player
+			send "[!]&aチャット欄に%{_h2}%と入力してください。"
+			set {homechat.%player%} to 1
+			while {homechat.%player%} is 1:
+				wait a seconds
+			set {homev2name3.%player's uuid%} to {home3name.%player's uuid%}
+			send "[log]home3を置き換え..." to player
+			send "[!]&aチャット欄に%{_h3}%と入力してください。"
+			set {homechat.%player%} to 1
+			while {homechat.%player%} is 1:
+				wait a seconds
+			send "[log]&a完了" to player
+			send "&b&m===&r[&aHomeV2&r]&b&m===" to player
+			send "&aHomeV2への移行が完了しました。" to player
+			set {homev2transfer.%player's uuid%} to 0
+			stop
+
+command /hometest:
+	trigger:
+		set {homechat.%player%} to 1
+		send "1"
+
+command /hometest2:
+	trigger:
+		set {homechat.%player%} to 0
+		send "0"
+
+on chat:
+	if {homechat.%player%} is 1:
+		cancel event
+		set {homev2.%message%.%player's uuid%} to {home.%message%.%player's uuid%}
+		set {homechat.%player%} to 0
