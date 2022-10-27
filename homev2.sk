@@ -322,7 +322,11 @@ command /hometransfer:
 			send "[log]Homeの個数を置き換え中..." to player
 			set {homev2.amount.%player's uuid%} to {_homeamount.%player's uuid%}
 			send "[log]&a完了" to player
-			send "[log]&a完了" to player
+			set {home.amount.%uuid of player%} to 0
+			delete {home1name.%player's uuid%}
+			delete {home2name.%player's uuid%}
+			delete {home3name.%player's uuid%}
+			send "[log]旧homeをリセット" to player
 			send "&b&m===&r[&aHomeV2&r]&b&m===" to player
 			send "&aHomeV2への移行が完了しました。" to player
 			set {homev2transfer.%player's uuid%} to 0
