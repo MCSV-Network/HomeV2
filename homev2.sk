@@ -18,22 +18,27 @@ command /homev2 [<text>]:
 			if arg-1 is {homev2name1.%player's uuid%}:
 				teleport player to {homev2.%arg-1%.%player's uuid%}
 				send "&a「%arg-1%」にテレポートしました！"
+				homechecksound(player)
 				stop
 			if arg-1 is {homev2name2.%player's uuid%}:
 				teleport player to {homev2.%arg-1%.%player's uuid%}
 				send "&a「%arg-1%」にテレポートしました！"
+				
 				stop
 			if arg-1 is {homev2name3.%player's uuid%}:
 				teleport player to {homev2.%arg-1%.%player's uuid%}
 				send "&a「%arg-1%」にテレポートしました！"
+				homechecksound(player)
 				stop
 			if arg-1 is {homev2name4.%player's uuid%}:
 				teleport player to {homev2.%arg-1%.%player's uuid%}
 				send "&a「%arg-1%」にテレポートしました！"
+				homechecksound(player)
 				stop
 			if arg-1 is {homev2name5.%player's uuid%}:
 				teleport player to {homev2.%arg-1%.%player's uuid%}
 				send "&a「%arg-1%」にテレポートしました！"
+				homechecksound(player)
 				stop
 			else:
 				send "&cその名前のhomeは存在しません！"
@@ -75,11 +80,11 @@ command /sethomev2 [<text>]:
 										set {homev2name1.%player's uuid%} to arg-1
 										set {homev2.%arg-1%.%player's uuid%} to location of player
 										if {homev2.sound.%player's uuid%} is 1:
-											homesound(player)
+											sethomesound(player)
 										if {homev2.sound.%player's uuid%} is 2:
-											homesound2(player)
+											sethomesound2(player)
 										if {homev2.sound.%player's uuid%} is 3:
-											homesound3(player)
+											sethomesound3(player)
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name2.%player's uuid%} is not set:
@@ -88,12 +93,7 @@ command /sethomev2 [<text>]:
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name2.%player's uuid%} to arg-1
 										set {homev2.%arg-1%.%player's uuid%} to location of player
-										if {homev2.sound.%player's uuid%} is 1:
-											homesound(player)
-										if {homev2.sound.%player's uuid%} is 2:
-											homesound2(player)
-										if {homev2.sound.%player's uuid%} is 3:
-											homesound3(player)
+										sethomechecksound(player)
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name3.%player's uuid%} is not set:
@@ -102,12 +102,7 @@ command /sethomev2 [<text>]:
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name3.%player's uuid%} to arg-1
 										set {homev2.%arg-1%.%player's uuid%} to location of player
-										if {homev2.sound.%player's uuid%} is 1:
-											homesound(player)
-										if {homev2.sound.%player's uuid%} is 2:
-											homesound2(player)
-										if {homev2.sound.%player's uuid%} is 3:
-											homesound3(player)
+										sethomechecksound(player)
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name4.%player's uuid%} is not set:
@@ -116,12 +111,7 @@ command /sethomev2 [<text>]:
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name4.%player's uuid%} to arg-1
 										set {homev2.%arg-1%.%player's uuid%} to location of player
-										if {homev2.sound.%player's uuid%} is 1:
-											homesound(player)
-										if {homev2.sound.%player's uuid%} is 2:
-											homesound2(player)
-										if {homev2.sound.%player's uuid%} is 3:
-											homesound3(player)
+										sethomechecksound(player)
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name5.%player's uuid%} is not set:
@@ -130,12 +120,7 @@ command /sethomev2 [<text>]:
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name5.%player's uuid%} to arg-1
 										set {homev2.%arg-1%.%player's uuid%} to location of player
-										if {homev2.sound.%player's uuid%} is 1:
-											homesound(player)
-										if {homev2.sound.%player's uuid%} is 2:
-											homesound2(player)
-										if {homev2.sound.%player's uuid%} is 3:
-											homesound3(player)
+										sethomechecksound(player)
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 								else:
@@ -159,15 +144,6 @@ command /sethomev2 [<text>]:
 				send "&cその名前のhomeはすでに存在しています！"
 				stop
 
-function homesound(p: player):
-	play sound "entity.player.levelup" with volume 1 and pitch 2 to {_p}
-
-function homesound2(p: player):
-	play sound "block.note_block.pling" with volume 1 and pitch 2 to {_p}
-
-function homesound3(p: player):
-	play sound "block.stone_button.click_on" with volume 1 and pitch 2 to {_p}
-
 
 #==========[DELHOME_COMMAND]==========
 command /delhomev2 [<text>]:
@@ -183,6 +159,7 @@ command /delhomev2 [<text>]:
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
+				delhomechecksound(player)
 				stop
 			
 			if arg-1 is {homev2name2.%player's uuid%}:
@@ -190,6 +167,7 @@ command /delhomev2 [<text>]:
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
+				delhomechecksound(player)
 				stop
 			
 			if arg-1 is {homev2name3.%player's uuid%}:
@@ -197,18 +175,21 @@ command /delhomev2 [<text>]:
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
+				delhomechecksound(player)
 				stop
 			if arg-1 is {homev2name4.%player's uuid%}:
 				delete {homev2name4.%player's uuid%}
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
+				delhomechecksound(player)
 				stop
-			if arg-1 is {homev2name4.%player's uuid%}:
-				delete {homev2name4.%player's uuid%}
+			if arg-1 is {homev2name5.%player's uuid%}:
+				delete {homev2name5.%player's uuid%}
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
+				delhomechecksound(player)
 				stop
 			else:
 				send "&cその名前のhomeは登録されていません！"
@@ -376,3 +357,75 @@ on chat:
 		set {homev2.%message%.%player's uuid%} to {home.%message%.%player's uuid%}
 		send "&aSuccess!"
 		set {homechat.%player%} to 0
+
+
+
+#==========[FUNCTION]==========
+
+#番号確認(home)
+function homechecksound(p: player):
+	#uuid取得
+	set {_uuid} to uuid of {_p}
+	if {homev2.sound.%{_uuid}%} is 1:
+		homesound({_p})
+	if {homev2.sound.%{_uuid}%} is 2:
+		homesound2({_p})
+	if {homev2.sound.%{_uuid}%} is 3:
+		homesound3({_p})
+
+#番号確認(sethome)
+function sethomechecksound(p: player):
+	#uuid取得
+	set {_uuid} to uuid of {_p}
+	if {homev2.sound.%{_uuid}%} is 1:
+		sethomesound({_p})
+	if {homev2.sound.%{_uuid}%} is 2:
+		sethomesound2({_p})
+	if {homev2.sound.%{_uuid}%} is 3:
+		sethomesound3({_p})
+
+#番号確認(delhome)
+function delhomechecksound(p: player):
+	#uuid取得
+	set {_uuid} to uuid of {_p}
+	if {homev2.sound.%{_uuid}%} is 1:
+		delhomesound({_p})
+	if {homev2.sound.%{_uuid}%} is 2:
+		delhomesound2({_p})
+	if {homev2.sound.%{_uuid}%} is 3:
+		delhomesound3({_p})
+
+
+#home sound
+function homesound(p: player):
+	play sound "entity.enderman.teleport" with volume 1 and pitch 1 to {_p}
+
+function homesound2(p: player):
+	play sound "entity.enderman.teleport" with volume 1 and pitch 1 to {_p}
+
+function homesound3(p: player):
+	play sound "entity.enderman.teleport" with volume 1 and pitch 1 to {_p}
+
+
+
+#sethome sound
+function sethomesound(p: player):
+	play sound "entity.player.levelup" with volume 1 and pitch 2 to {_p}
+
+function sethomesound2(p: player):
+	play sound "block.note_block.hat" with volume 1 and pitch 1 to {_p}
+
+function sethomesound3(p: player):
+	play sound "block.stone_button.click_on" with volume 1 and pitch 2 to {_p}
+
+
+
+#delhome sound
+function delhomesound(p: player):
+	play sound "entity.generic.burn" with volume 1 and pitch 1 to {_p}
+
+function delhomesound2(p: player):
+	play sound "entity.generic.burn" with volume 1 and pitch 1 to {_p}
+
+function delhomesound3(p: player):
+	play sound "entity.generic.burn" with volume 1 and pitch 1 to {_p}
