@@ -23,7 +23,7 @@ command /homev2 [<text>]:
 			if arg-1 is {homev2name2.%player's uuid%}:
 				teleport player to {homev2.%arg-1%.%player's uuid%}
 				send "&a「%arg-1%」にテレポートしました！"
-				
+				homechecksound(player)
 				stop
 			if arg-1 is {homev2name3.%player's uuid%}:
 				teleport player to {homev2.%arg-1%.%player's uuid%}
@@ -129,19 +129,24 @@ command /sethomev2 [<text>]:
 									send "&cこれ以上多くのhomeを設定できません!"
 									stop
 							else:
-								send "&cその名前のhomeはすでに存在しています！"
+								send "&cその名前のhomeはすでに存在しています！(home名:%arg-1%)"
+								play sound "block.note_block.bass" with volume 2 and pitch 1 to player
 								stop
 						else:
-							send "&cその名前のhomeはすでに存在しています！"
+							send "&cその名前のhomeはすでに存在しています！(home名:%arg-1%)"
+							play sound "block.note_block.bass" with volume 2 and pitch 1 to player
 							stop
 					else:
-						send "&cその名前のhomeはすでに存在しています！"
+						send "&cその名前のhomeはすでに存在しています！(home名:%arg-1%)"
+						play sound "block.note_block.bass" with volume 2 and pitch 1 to player
 						stop
 				else:
-					send "&cその名前のhomeはすでに存在しています！"
+					send "&cその名前のhomeはすでに存在しています！(home名:%arg-1%)"
+					play sound "block.note_block.bass" with volume 2 and pitch 1 to player
 					stop
 			else:
-				send "&cその名前のhomeはすでに存在しています！"
+				send "&cその名前のhomeはすでに存在しています！(home名:%arg-1%)"
+				play sound "block.note_block.bass" with volume 2 and pitch 1 to player
 				stop
 
 
