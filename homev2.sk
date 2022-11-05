@@ -2,16 +2,23 @@
 #home.skを改良したskript
 
 
+options:
+  nopermission: &a[&bPickChan&a]&c権限がありません!
+
 #==========[HOME_COMMAND]==========
-command /homev2 [<text>]:
+command /home [<text>]:
 	trigger:
+		if command sender is console:
+			send "&cコンソールからは実行できません!" to sender
+			stop
+		
 		if arg-1 is not set:
 			set {_h} to "&a%{homev2name1.%player's uuid%}% %{homev2name2.%player's uuid%}% %{homev2name3.%player's uuid%}% %{homev2name4.%player's uuid%}% %{homev2name5.%player's uuid%}%"
 			replace all "<none>" in {_h} with ""
 			replace all "  " in {_h} with " "
 			send "&d登録済みのhome: %{_h}%"
-			send "&e/homev2 [ホーム名] で登録したホームへテレポートできます!"
-			send "&e例: /homev2 ringohouse"
+			send "&e/home [ホーム名] で登録したホームへテレポートできます!"
+			send "&e例: /home ringohouse"
 			stop
 		
 		if arg-1 is set:
@@ -46,18 +53,20 @@ command /homev2 [<text>]:
 
 
 #==========[SETHOME_COMMAND]==========
-command /sethomev2 [<text>]:
+command /sethome [<text>]:
 	trigger:
+		if command sender is console:
+			send "&cコンソールからは実行できません!" to sender
+			stop
+
 		#home数、arg-1の確認
 		if {homev2.amount.%player's uuid%} is not set:
 			set {homev2.amount.%player's uuid%} to 0
-			send "[log] homev2 amount is &cnot set"
-			send "[log] set homev2 amount to &a0"
 		if {homev2.sound.%player's uuid%} is not set:
 			set {homev2.sound.%player's uuid%} to 1
 		if arg-1 is not set:
-			send "&c使用方法: /sethomev2 [ホーム名]"
-			send "&e例: /sethomev2 ringohouse"
+			send "&c使用方法: /sethome [ホーム名]"
+			send "&e例: /sethome ringohouse"
 			stop
 
 		#arg-1が設定されているのを確認、sethomeの処理を開始
@@ -68,13 +77,10 @@ command /sethomev2 [<text>]:
 					if arg-1 is not {homev2name3.%player's uuid%}:
 						if arg-1 is not {homev2name4.%player's uuid%}:
 							if arg-1 is not {homev2name5.%player's uuid%}:
-								send "[log] Is that arg-1 not in the list? - &aYes"
 						
 								#home数によって処理の方法を変更
 								if {homev2.amount.%player's uuid%} is less than 5:
-									send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
 									if {homev2name1.%player's uuid%} is not set:
-										send "[log] home1 is not set"
 										add 1 to {homev2.amount.%player's uuid%}
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name1.%player's uuid%} to arg-1
@@ -88,7 +94,6 @@ command /sethomev2 [<text>]:
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name2.%player's uuid%} is not set:
-										send "[log] home2 is not set"
 										add 1 to {homev2.amount.%player's uuid%}
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name2.%player's uuid%} to arg-1
@@ -97,7 +102,6 @@ command /sethomev2 [<text>]:
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name3.%player's uuid%} is not set:
-										send "[log] home3 is not set"
 										add 1 to {homev2.amount.%player's uuid%}
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name3.%player's uuid%} to arg-1
@@ -106,7 +110,6 @@ command /sethomev2 [<text>]:
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name4.%player's uuid%} is not set:
-										send "[log] home4 is not set"
 										add 1 to {homev2.amount.%player's uuid%}
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name4.%player's uuid%} to arg-1
@@ -115,7 +118,6 @@ command /sethomev2 [<text>]:
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 									if {homev2name5.%player's uuid%} is not set:
-										send "[log] home5 is not set"
 										add 1 to {homev2.amount.%player's uuid%}
 										add arg-1 to {homev2.%player's uuid%::*}
 										set {homev2name5.%player's uuid%} to arg-1
@@ -124,8 +126,6 @@ command /sethomev2 [<text>]:
 										send "&a現在地を 「%arg-1%」 として設定しました！"
 										stop
 								else:
-									send "[log] homev2.amount is 5? - &aYes"
-									send "[log] homev2.amount: %{homev2.amount.%player's uuid%}%"
 									send "&cこれ以上多くのhomeを設定できません!"
 									stop
 							else:
@@ -151,11 +151,15 @@ command /sethomev2 [<text>]:
 
 
 #==========[DELHOME_COMMAND]==========
-command /delhomev2 [<text>]:
+command /delhome [<text>]:
 	trigger:
+		if command sender is console:
+			send "&cコンソールからは実行できません!" to sender
+			stop
+		
 		if arg-1 is not set:
-			send "&c使用方法: /delhomev2 [ホーム名]"
-			send "&c例: /delhomev2 ringohouse"
+			send "&c使用方法: /delhome [ホーム名]"
+			send "&c例: /delhome ringohouse"
 			stop
 		
 		if arg-1 is set:
@@ -202,8 +206,12 @@ command /delhomev2 [<text>]:
 
 
 #==========[RESET_COMMAND]==========
-command /homev2reset:
+command /homereset:
 	trigger:
+		if command sender is console:
+			send "&cコンソールからは実行できません!" to sender
+			stop
+		
 		if {homev2reset.%player's uuid%} is not set:
 			set {homev2reset.%player's uuid%} to 0
 		if {homev2reset.%player's uuid%} is 0:
@@ -212,7 +220,7 @@ command /homev2reset:
 			send "&eこのコマンドは特別な理由がない限り"
 			send "&e使用しないでください。"
 			send "&eこれを使用すると、Homeの全データが消去されます!(この操作は取り消せません!!)"
-			send "&4本当に行う場合は、&n30秒以内に&r&4もう一度&e/homev2reset&4を入力してください。"
+			send "&4本当に行う場合は、&n30秒以内に&r&4もう一度&e/homereset&4を入力してください。"
 			wait 30 seconds
 			if {homev2reset.%player's uuid%} is 1:
 				send "&e[&4HomeV2&e] 30秒以内にコマンドが入力されなかったため、Homeのリセットはキャンセルされました。"
@@ -227,7 +235,6 @@ command /homev2reset:
 			delete {homev2name3.%player's uuid%}
 			delete {homev2name4.%player's uuid%}
 			delete {homev2name5.%player's uuid%}
-			send "[log] reset your homev2 data."
 			send "&e&m===&r&e[&4&lHomeV2&r&e]&m==="
 			send "&cHomeのリセットが完了しました。"
 			set {homev2reset.%player's uuid%} to 0
@@ -236,7 +243,7 @@ command /homev2reset:
 #==========[TAB_COMPLETE]==========
 
 #home tab
-on tab complete of "/homev2":
+on tab complete of "/home":
 	set {_t} to 0
 	set tab completions for position 1 to ""
 	if {homev2name1.%player's uuid%} is set:
@@ -258,7 +265,7 @@ on tab complete of "/homev2":
 		add "/sethomev2 ホーム名 でHomeを追加できます!" to tab completions for position 1
 
 #delhome tab
-on tab complete of "/delhomev2":
+on tab complete of "/delhome":
 	set tab completions for position 1 to ""
 	if {homev2name1.%player's uuid%} is set:
 		add "%{homev2name1.%player's uuid%}%" to tab completions for position 1
@@ -272,13 +279,17 @@ on tab complete of "/delhomev2":
 		add "%{homev2name5.%player's uuid%}%" to tab completions for position 1
 
 #sethome tab
-on tab complete of "/sethomev2":
+on tab complete of "/sethome":
 	set tab completions for position 1 to "ホーム名を入力...(例: ringohouse)"
 
 #==========[REPLACE_OLDHOME]==========
 
 command /hometransfer:
 	trigger:
+		if command sender is console:
+			send "&cコンソールからは実行できません!" to sender
+			stop
+		
 		if {homev2transfer.%player's uuid%} is not set:
 			set {homev2transfer.%player's uuid%} to 0
 		if {homev2transfer.%player's uuid%} is 0:
@@ -297,6 +308,7 @@ command /hometransfer:
 				stop
 		if {homev2transfer.%player's uuid%} is 1:
 			send "[log] &a旧HomeのデータをHomeV2に移動します。" to player
+			add 1 to {hometransferuse}
 
 			if {home1name.%player's uuid%} is set:
 				set {_h1} to "&a%{home1name.%player's uuid%}%"
@@ -364,6 +376,14 @@ on chat:
 		set {homechat.%player%} to 0
 
 
+
+#==========[ADMIN_ONLY]==========
+
+command /transfercount:
+	permission: admin
+	permission message: {@nopermission}
+	trigger:
+		send "count: &a%{hometransferuse}%" to player
 
 #==========[FUNCTION]==========
 
