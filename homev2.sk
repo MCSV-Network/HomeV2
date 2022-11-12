@@ -262,7 +262,7 @@ on tab complete of "/home":
 		set {_t} to 1
 		add "%{homev2name5.%player's uuid%}%" to tab completions for position 1
 	if {_t} is 0:
-		add "/sethomev2 ホーム名 でHomeを追加できます!" to tab completions for position 1
+		add "/sethome ホーム名 でHomeを追加できます!" to tab completions for position 1
 
 #delhome tab
 on tab complete of "/delhome":
