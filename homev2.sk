@@ -1,4 +1,4 @@
-#Home v2.0.0
+#Home v2.0.1
 #home.skを改良したskript
 
 
@@ -223,7 +223,7 @@ command /homereset:
 			send "&4本当に行う場合は、&n30秒以内に&r&4もう一度&e/homereset&4を入力してください。"
 			wait 30 seconds
 			if {homev2reset.%player's uuid%} is 1:
-				send "&e[&4HomeV2&e] 30秒以内にコマンドが入力されなかったため、Homeのリセットはキャンセルされました。"
+				send "&e[&4HomeV2&e] 30秒以内にコマンドが入力されなかったため、HomeV2への移行はキャンセルされました。"
 				set {homev2reset.%player's uuid%} to 0
 				stop
 			else:
