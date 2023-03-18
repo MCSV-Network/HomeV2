@@ -7,7 +7,7 @@ Tsubasa_9602氏が作成したHome.skの改良版
 
 1. Skriptをダウンロード&インストール (https://github.com/SkriptLang/Skript/releases)
 
-2. Skbeeをダウンロード&インストール (https://github.com/ShaneBeee/SkBee/releases)
+2. SkBeeをダウンロード&インストール (https://github.com/ShaneBeee/SkBee/releases)
 
 3. このskript(.sk)をダウンロード
 
