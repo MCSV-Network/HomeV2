@@ -5,6 +5,13 @@
 options:
   nopermission: &a[&bPickChan&a]&c権限がありません!
 
+#dev
+command /debughomeval [<text>]:
+	trigger:
+		if {homev2.%arg-1%.%player's uuid%} is set:
+			send "is set?: &atrue"
+		if {homev2.%arg-1%.%player's uuid%} is not set:
+			send "is set?: &cno/error"
 #==========[HOME_COMMAND]==========
 command /home [<text>]:
 	trigger:
@@ -164,7 +171,19 @@ command /delhome [<text>]:
 		
 		if arg-1 is set:
 			if arg-1 is {homev2name1.%player's uuid%}:
+				send "Deleting..." to console
 				delete {homev2name1.%player's uuid%}
+				send "check variable" to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
+				delete {homev2.%arg-1%.%player's uuid%}
+				send "deleted. rechecking..." to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
@@ -172,7 +191,19 @@ command /delhome [<text>]:
 				stop
 			
 			if arg-1 is {homev2name2.%player's uuid%}:
+				send "Deleting..." to console
 				delete {homev2name2.%player's uuid%}
+				send "check variable" to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
+				delete {homev2.%arg-1%.%player's uuid%}
+				send "deleted. rechecking..." to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
@@ -180,21 +211,57 @@ command /delhome [<text>]:
 				stop
 			
 			if arg-1 is {homev2name3.%player's uuid%}:
+				send "Deleting..." to console
 				delete {homev2name3.%player's uuid%}
+				send "check variable" to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
+				delete {homev2.%arg-1%.%player's uuid%}
+				send "deleted. rechecking..." to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
 				delhomechecksound(player)
 				stop
 			if arg-1 is {homev2name4.%player's uuid%}:
+				send "Deleting..." to console
 				delete {homev2name4.%player's uuid%}
+				send "check variable" to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
+				delete {homev2.%arg-1%.%player's uuid%}
+				send "deleted. rechecking..." to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
 				delhomechecksound(player)
 				stop
 			if arg-1 is {homev2name5.%player's uuid%}:
+				send "Deleting..." to console
 				delete {homev2name5.%player's uuid%}
+				send "check variable" to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
+				delete {homev2.%arg-1%.%player's uuid%}
+				send "deleted. rechecking..." to console
+				if {homev2.%arg-1%.%player's uuid%} is set:
+					send "is set?: &atrue" to console
+				if {homev2.%arg-1%.%player's uuid%} is not set:
+					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
@@ -235,6 +302,7 @@ command /homereset:
 			delete {homev2name3.%player's uuid%}
 			delete {homev2name4.%player's uuid%}
 			delete {homev2name5.%player's uuid%}
+			delete {homechat.%player%}
 			send "&e&m===&r&e[&4&lHomeV2&r&e]&m==="
 			send "&cHomeのリセットが完了しました。"
 			set {homev2reset.%player's uuid%} to 0
@@ -370,11 +438,40 @@ command /hometransfer:
 
 on chat:
 	if {homechat.%player%} is 1:
+		send "[HomeTransfer] %player% - trans msg: %message%" to console
 		cancel event
-		set {homev2.%message%.%player's uuid%} to {home.%message%.%player's uuid%}
-		send "&aSuccess!"
-		set {homechat.%player%} to 0
-
+		if {home1name.%player's uuid%} is set:
+			set {_h1} to "&a%{home1name.%player's uuid%}%"
+			replace all "<none>" in {_h1} with ""
+			replace all "  " in {_h1} with " "
+		if {home2name.%player's uuid%} is set:
+			set {_h2} to "&a%{home2name.%player's uuid%}%"
+			replace all "<none>" in {_h2} with ""
+			replace all "  " in {_h2} with " "
+		if {home3name.%player's uuid%} is set:
+			set {_h3} to "&a%{home3name.%player's uuid%}%"
+			replace all "<none>" in {_h3} with ""
+			replace all "  " in {_h3} with " "
+		send "%{_h1}%" to console
+		send "%{_h2}%" to console
+		send "%{_h3}%" to console
+		if message is "%{_h1}%":
+			set {homev2.%message%.%player's uuid%} to {home.%message%.%player's uuid%}
+			send "&aSuccess!"
+			set {homechat.%player%} to 0
+			stop
+		if message is "%{_h2}%":
+			set {homev2.%message%.%player's uuid%} to {home.%message%.%player's uuid%}
+			send "&aSuccess!"
+			set {homechat.%player%} to 0
+			stop
+		if message is "%{_h3}%":
+			set {homev2.%message%.%player's uuid%} to {home.%message%.%player's uuid%}
+			send "&aSuccess!"
+			set {homechat.%player%} to 0
+			stop
+		else:
+			send "&cError! - 入力した内容が一致しませんでした。もう一度入力してください。"
 
 
 #==========[ADMIN_ONLY]==========
