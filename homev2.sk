@@ -171,19 +171,8 @@ command /delhome [<text>]:
 		
 		if arg-1 is set:
 			if arg-1 is {homev2name1.%player's uuid%}:
-				send "Deleting..." to console
 				delete {homev2name1.%player's uuid%}
-				send "check variable" to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				delete {homev2.%arg-1%.%player's uuid%}
-				send "deleted. rechecking..." to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
@@ -191,19 +180,8 @@ command /delhome [<text>]:
 				stop
 			
 			if arg-1 is {homev2name2.%player's uuid%}:
-				send "Deleting..." to console
 				delete {homev2name2.%player's uuid%}
-				send "check variable" to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				delete {homev2.%arg-1%.%player's uuid%}
-				send "deleted. rechecking..." to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
@@ -211,57 +189,24 @@ command /delhome [<text>]:
 				stop
 			
 			if arg-1 is {homev2name3.%player's uuid%}:
-				send "Deleting..." to console
 				delete {homev2name3.%player's uuid%}
-				send "check variable" to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				delete {homev2.%arg-1%.%player's uuid%}
-				send "deleted. rechecking..." to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
 				delhomechecksound(player)
 				stop
 			if arg-1 is {homev2name4.%player's uuid%}:
-				send "Deleting..." to console
 				delete {homev2name4.%player's uuid%}
-				send "check variable" to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				delete {homev2.%arg-1%.%player's uuid%}
-				send "deleted. rechecking..." to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
 				delhomechecksound(player)
 				stop
 			if arg-1 is {homev2name5.%player's uuid%}:
-				send "Deleting..." to console
 				delete {homev2name5.%player's uuid%}
-				send "check variable" to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				delete {homev2.%arg-1%.%player's uuid%}
-				send "deleted. rechecking..." to console
-				if {homev2.%arg-1%.%player's uuid%} is set:
-					send "is set?: &atrue" to console
-				if {homev2.%arg-1%.%player's uuid%} is not set:
-					send "is set?: &cno/error" to console
 				remove arg-1 from {homev2.%player's uuid%::*}
 				remove 1 from {homev2.amount.%player's uuid%}
 				send "&ahome「%arg-1%」を削除しました！"
