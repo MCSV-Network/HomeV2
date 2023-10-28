@@ -1,7 +1,7 @@
-# HomeV2
+# HomeV2 - 開発終了
 Tsubasa_9602氏が作成したHome.skの改良版
 
-不具合の報告はDiscord内にて受け付けております。
+⚠️**HomeV2は開発を終了しました！今後は[HomeV3](https://github.com/MCSV-Network/HomeV3/)を使用してください！**
 
 ## インストール
 
